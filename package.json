@@ -1,0 +1,16 @@
+{
+  "name": "r6unhasher",
+  "version": "1.0.0",
+  "description": "A simple service which redirects you to a proper R6S json file",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Eloncase",
+  "license": "MIT",
+  "dependencies": {
+    "log4js": "^6.1.0",
+    "node-fetch": "^2.6.0"
+  }
+}

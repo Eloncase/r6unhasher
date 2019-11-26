@@ -1,0 +1,28 @@
+{
+    "appenders": {
+        "file": {
+            "type": "file",
+            "filename": "log.log"
+        }
+    },
+    "categories": {
+        "default": {
+            "appenders": [
+                "file"
+            ],
+            "level": "off"
+        },
+        "updater": {
+            "appenders": [
+                "file"
+            ],
+            "level": "debug"
+        },
+        "http": {
+            "appenders": [
+                "file"
+            ],
+            "level": "debug"
+        }
+    }
+}
