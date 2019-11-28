@@ -32,6 +32,7 @@ function tryRedirect(res, group, endpoint, locale) {
         } else {
             sendRedirect(res, obj[group][endpoint].url);
         }
+        return;
     }
 
     log.debug(`Couldn't redirect: ${group} ${endpoint} ${locale}, sending 404`);
