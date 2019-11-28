@@ -22,7 +22,7 @@ function sendRedirect(res, url) {
 }
 
 function tryRedirect(res, group, endpoint, locale) {
-    log.debug(`Trying redirect ${group} ${endpoint} ${locale}`);
+    log.debug(`Trying redirect (${group} ${endpoint} ${locale})`);
 
     var obj = locale ? store.get().localized : store.get().unlocalized;
 
@@ -35,7 +35,7 @@ function tryRedirect(res, group, endpoint, locale) {
         return;
     }
 
-    log.debug(`Couldn't redirect: ${group} ${endpoint} ${locale}, sending 404`);
+    log.debug(`Couldn't redirect: (${group} ${endpoint} ${locale}), sending 404`);
     sendCode(res, 404);
 }
 
@@ -72,12 +72,19 @@ function handleRequest(req, res) {
     }
 }
 
+function getIp(req) {
+    return req.headers["x-forwarded-for"] ||
+       req.connection.remoteAddress ||
+       req.socket.remoteAddress ||
+       req.connection.socket.remoteAddress;
+}
+
 function logRequest(req) {
-    log.info(`${req.method} ${req.url} request from ${req.client.remoteAddress}`);
+    log.info(`${req.method} ${req.url} request from ${getIp(req)}`);
 }
 
 function logResponse(req, res) {
-    log.info(`${req.method} ${req.url} request from ${req.client.remoteAddress} - StatusCode ${res.statusCode}`);
+    log.info(`${req.method} ${req.url} request from ${getIp(req)} - StatusCode ${res.statusCode}`);
 }
 
 function mainHandler(req, res) {
